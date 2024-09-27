@@ -1,25 +1,87 @@
-import logo from './logo.svg';
-import './App.css';
+import s from './styles/App.module.scss';
+import { HomePage } from "./components/HomePage/HomePage";
+import { AboutPage } from "./components/AboutPage/AboutPage";
+import { Box } from "./components/Box/Box";
+import { useSelector } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
+import { changeTheme } from "./redux/slices/ThemeSwitch"
+import store from './redux/store';
+import Goods from "./components/Goods/Goods";
+
+import { selectItems } from './redux/slices/EditSlice';
+import { selectTheme } from './redux/slices/ThemeSwitch.jsx';
+
+
+import {
+  BrowserRouter,
+  NavLink,
+  Route,
+  Routes,
+} from "react-router-dom";
+
+const AppWrapper = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+}
 
 function App() {
+  const dispatch = useDispatch();
+
+  const currentTheme = useSelector(selectTheme);
+  const itms = useSelector(selectItems);
+
+  const routes = [
+    {
+      path: "/",
+      element: <HomePage />,
+      text: "Главная",
+    },
+    {
+      path: "/about",
+      element: <AboutPage />,
+      text: "О нас",
+    },
+    {
+      path: "/arr",
+      element: <Goods products={itms} />,
+      text: "Товары",
+    },
+    {
+      path: "/txt",
+      element: <Box />,
+      text: "Текст",
+    },
+  ];
+
+  const styleActiveLink = ({ isActive }) => {
+    return isActive ? `${s.link} ${s.active}` : s.link;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div className={s[currentTheme]}>
+
+      <BrowserRouter>
+        <nav className={[s.nav, s[currentTheme]].join(' ')}>
+
+          {routes.map(item => <NavLink className={styleActiveLink} to={item.path}>{item.text}</NavLink>)}
+        </nav>
+      
+        <div className={s[currentTheme]}>
+
+          <Routes>
+            {routes.map(item => <Route key={item.path} element={item.element} path={item.path} />)}
+          </Routes>
+        </div>
+      </BrowserRouter>
+
+      
     </div>
+
   );
 }
 
-export default App;
+export default AppWrapper;
