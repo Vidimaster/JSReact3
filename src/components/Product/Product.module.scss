@@ -1,0 +1,78 @@
+@import '../../styles/vars';
+
+.item_content {
+    width: 263px;
+    position: relative;
+}
+
+.item_content:hover {
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s;
+}
+
+.item_content:hover .item_img_pic {
+    filter: brightness(30%);
+}
+
+.item_content:hover .add_box {
+    display: flex;
+}
+
+.item_img {
+    display: block;
+    width: 263px;
+    text-decoration: none;
+}
+
+.txt_box {
+    padding: 20px;
+}
+
+.item_dsc {
+    font-family: $font_fam;
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #222222;
+    margin-bottom: 17px;
+}
+
+.item_price {
+    font-family: $font_fam;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #f16d7f;
+}
+
+
+.add_box {
+    position: absolute;
+    top: 98px;
+    display: none;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none;
+}
+
+.add {
+
+    display: flex;
+    padding: 10px;
+    font-family: $font_fam;
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #ffffff;
+    border: 1px solid #fff;
+    text-decoration: none;
+    align-items: center;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.add:hover {
+    box-shadow: 0 0 10px 0 #fff;
+}

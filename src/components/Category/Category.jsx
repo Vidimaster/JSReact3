@@ -7,7 +7,7 @@ export const Category = (props) => (
     <div className={props.customStyle}>
         <a href="product.html">
             <div className={props.customStyle + s.hoverable_img}>
-                <img className={s.item_img + s.hoverable_img} src={props.img} alt="img" />
+                <img className={s.hoverable_img_img} src={props.img} alt="img" />
 
             </div>
             <div className={s.offer} style={props.st}>

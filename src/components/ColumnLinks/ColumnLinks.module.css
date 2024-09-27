@@ -1,0 +1,23 @@
+.col_text_header {
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  color: #f16d7f;
+  margin-bottom: 45px;
+}
+
+.col_ref {
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  line-height: 39px;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  color: #898989;
+}
+
+.col_ref:hover {
+  color: #F16D7F;
+}/*# sourceMappingURL=ColumnLinks.module.css.map */

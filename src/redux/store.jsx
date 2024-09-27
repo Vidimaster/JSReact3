@@ -1,13 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import deleteReducer from "./slices/EditSlice";
-import themeReducer from "./slices/ThemeSwitch";
+import todosSlice from "./services/showListThunk";
+import changeSlice from "../redux/slices/EditSlice";
 
 const store = configureStore({
     reducer: {
- 
-        theme: themeReducer,
-        delete: deleteReducer,
+        product_action: changeSlice,
+        todos: todosSlice,
     }
 });
 export default store;
