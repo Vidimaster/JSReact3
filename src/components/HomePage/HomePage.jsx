@@ -9,12 +9,12 @@ import ic_truck from '../../img/ic_truck.svg';
 import ic_percent from '../../img/ic_percent.svg';
 import ic_crown from '../../img/ic_crown.svg';
 
-import {useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from "react";
 import { fetchProducts } from '../../redux/services/showListThunk.jsx';
 
 
-export const HomePage = () => {
+export const HomePage = (prop) => {
   const categorys = [
 
     { image: require('../../img/category_1.png') },
@@ -23,18 +23,6 @@ export const HomePage = () => {
     { image: require('../../img/category_4.png') },
   ]
 
-
-  const [state, setState] = useState([]);
-  const dispatch = useDispatch();
-  const data = dispatch(fetchProducts(0));
-  data.unwrap()
-    .then((PromiseResult) => {
-      setState(PromiseResult)
-
-    })
-    .catch((rejected) => {
-      console.log();
-    });
 
 
   return (
@@ -57,7 +45,7 @@ export const HomePage = () => {
         <p className={s.content_font_sub}> Shop for items based on what we featured in this week</p>
         <div className={s.grid_feature}>
 
-          <Product prop={state} />
+          <Product prop={prop.prop} />
 
 
         </div>

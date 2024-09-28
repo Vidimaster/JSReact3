@@ -1,5 +1,6 @@
 import s from './styles/App.module.scss';
 import { HomePage } from "./components/HomePage/HomePage";
+import { CartCheckout } from "./components/CartCheckout/CartCheckout";
 import { useSelector } from 'react-redux';
 import { Provider, useDispatch } from 'react-redux';
 import store from './redux/store';
@@ -13,8 +14,7 @@ import author_img from './img/Intersect.png'
 import { useState } from "react";
 import { fetchProducts } from './redux/services/showListThunk';
 
-
-
+import { selectItems } from './redux/services/showListThunk'
 
 import {
   BrowserRouter,
@@ -35,16 +35,27 @@ const logo = require('./img/logo.png')
 
 function App() {
 
+  const [state, setState] = useState([]);
+  const dispatch = useDispatch();
+  const data = dispatch(fetchProducts(0));
+  data.unwrap()
+    .then((PromiseResult) => {
+      setState(PromiseResult)
+
+    })
+    .catch((rejected) => {
+      console.log();
+    });
+
   const routes = [
     {
       path: "/",
-      element: <HomePage />,
-      text: "Главная",
+      element: <HomePage prop={state} />,
     },
     {
-      path: "/about",
-      element: <HomePage />,
-      text: "О нас",
+      path: "/cart_checkout",
+      element: <CartCheckout prop={state} />,
+
     },
     {
       path: "/arr",
@@ -72,17 +83,10 @@ function App() {
     ]
   }
 
-  const [state, setState] = useState([]);
-  const dispatch = useDispatch();
-  const data = dispatch(fetchProducts(0));
-  data.unwrap()
-    .then((PromiseResult) => {
-      setState(PromiseResult)
 
-    })
-    .catch((rejected) => {
-      console.log();
-    });
+  // const itms = useSelector(selectItems);
+  // console.log(itms);
+
 
   return (
     <>

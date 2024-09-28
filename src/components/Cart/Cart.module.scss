@@ -47,14 +47,53 @@
     padding-bottom: 20px;
     padding-top: 21px;
     z-index: 999;
+    gap: 50px;
 }
 
 .total_text {
-    margin-bottom: 33px;
     font-family: $font_fam;
     font-size: 16px;
     line-height: 1.2;
     font-weight: 700;
     text-transform: uppercase;
     color: $black_color;
+}
+
+.check_out_heading {
+    font-family: $font_fam;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $black_color;
+
+}
+
+.summary_product {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
+
+.product_name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.check_out_price {
+    font-family: $font_fam;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: $pink_color;
+}
+
+.close_checkout {
+    color: #c0c0c0;
+    align-items: center;
+    display: flex;
 }

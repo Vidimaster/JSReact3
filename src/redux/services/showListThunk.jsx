@@ -36,6 +36,7 @@ const todosSlice = createSlice({
     }
 })
 
+export const selectItems = state => state.todos;
 export const { showItems } = todosSlice.actions;
 export { fetchProducts };
 export default todosSlice.reducer; 
