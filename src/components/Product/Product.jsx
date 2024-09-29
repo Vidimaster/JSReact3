@@ -22,7 +22,7 @@ export const Product = ({ prop }) => {
             {prop.map((value) => (
 
                 <div key={value.id} className={s.item_content}>
-                    <a className={s.item_img} href="single_page.html">
+                    <a className={s.item_img} href="/catalogue">
 
                         <img className={s.item_img_pic} src={value.img} alt="" />
                         <div className={s.txt_box}>
@@ -35,7 +35,7 @@ export const Product = ({ prop }) => {
                     <div className={s.add_box}>
                         <a className={s.add} onClick={() => {
 
-                            dispatch(addItem(value.id))
+                            dispatch(addItem({ id: value.id, count: 1 }))
                             dispatch(setTotal(cachedFn()))
                         }}> <span> Add to Cart</span></a>
                         {/* <i class="fa fa-solid fa-cart-shopping" style={{ font: '14px' }}></i> */}

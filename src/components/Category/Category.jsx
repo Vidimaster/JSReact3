@@ -5,7 +5,7 @@ import React from "react";
 export const Category = (props) => (
 
     <div className={props.customStyle}>
-        <a href="product.html">
+        <a href="/catalogue">
             <div className={props.customStyle + s.hoverable_img}>
                 <img className={s.hoverable_img_img} src={props.img} alt="img" />
 

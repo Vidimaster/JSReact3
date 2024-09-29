@@ -28,30 +28,37 @@ export const Cart = ({ prop }) => {
     const itms_to_cart = useSelector(selectItems);
     const itms_total = useSelector(selectTotal);
 
+    let to_cart_1 = undefined;
+    let to_cart_2 = undefined;
+
     useEffect(() => {
 
         dispatch(setTotal(cachedFn()))
     }, [dispatch, prop, cachedFn])
 
-    let to_cart_1 = undefined;
-    let to_cart_2 = undefined;
+    //console.log(JSON.parse('{"id": 1, "quantity": 12}'));
+    let CartHeight = '200px';
     try {
         to_cart_1 = prop.find(x => x.id === JSON.parse(itms_to_cart.cart_1))
         to_cart_2 = prop.find(x => x.id === JSON.parse(itms_to_cart.cart_2))
+
     } catch (e) {
 
     }
+
+    if (to_cart_1 !== undefined) { CartHeight = '300px' }
+    if (to_cart_2 !== undefined) { CartHeight = '440px' }
 
     function ShowCart(props) {
         if (props !== undefined) {
             return (
                 <div className={s.summary_product}>
-                    <a href="single_page.html"> <img style={{ width: '75%' }} src={props?.img} alt="product1"></img>
+                    <a href="/catalogue"> <img style={{ width: '75%' }} src={props?.img} alt="product1"></img>
                     </a>
 
 
                     <div className={s.product_name}>
-                        <a href="single_page.html" className={s.check_out_heading}>
+                        <a href="/catalogue" className={s.check_out_heading}>
                             {props.description}
                         </a>
                         {/* <i className={s.fa + s.fa_regular + s.fa_star}></i> */}
@@ -76,7 +83,7 @@ export const Cart = ({ prop }) => {
                 Account&nbsp;</summary>
             {/* <span><i className={s.fa + s.fa_solid + s.fa_caret_down}></i></span> */}
 
-            <div className={s.checkout__content}>
+            <div className={s.checkout__content} style={{ height: CartHeight }}>
 
 
                 {ShowCart(to_cart_1)}

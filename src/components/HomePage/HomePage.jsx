@@ -9,11 +9,6 @@ import ic_truck from '../../img/ic_truck.svg';
 import ic_percent from '../../img/ic_percent.svg';
 import ic_crown from '../../img/ic_crown.svg';
 
-import { useDispatch } from 'react-redux';
-import { useState } from "react";
-import { fetchProducts } from '../../redux/services/showListThunk.jsx';
-
-
 export const HomePage = (prop) => {
   const categorys = [
 
@@ -52,7 +47,7 @@ export const HomePage = (prop) => {
         <br />
         <br />
         <div className={s.block_line}>
-          <a className={s.button} href="">Browse All Product
+          <a className={s.button} href="/catalogue">Browse All Product
           </a>
           {/* <i class="fa fa-solid fa-arrow-right"></i> */}
         </div>

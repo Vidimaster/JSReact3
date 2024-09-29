@@ -2,40 +2,24 @@ import React from "react";
 
 import s from "./CartCheckout.module.scss";
 import { deleteItemAll } from '../../redux/slices/EditSlice'
-
 import { useDispatch } from 'react-redux';
-import { useState } from "react";
 import { selectTotal } from '../../redux/slices/EditSlice'
 import { setTotal } from '../../redux/slices/EditSlice'
 import { useSelector } from 'react-redux';
 import { ProductsInCheckout } from '../../components/ProductsInCheckout/ProductsInCheckout'
-
+import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs'
 export const CartCheckout = ({ prop }) => {
 
   const dispatch = useDispatch();
 
 
 
-const itms_total = useSelector(selectTotal);
-// dispatch(setTotal(CountTotal()))
+  const itms_total = useSelector(selectTotal);
 
   return (
     <>
-      <div className={s.bread_block}>
+      <BreadCrumbs />
 
-        <div className={s.container_left_single_page_header}>
-          <h3 className={""}>New Arrivals</h3>
-        </div>
-
-        <nav className={s.container_right}>
-          <ul className={s.breadcrumb_single}>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Men</a></li>
-            <li><a href="#">New Arrivals</a></li>
-
-          </ul>
-        </nav>
-      </div>
 
       <div className={s.cart_content}>
         <div className={s.cart_content_header}>

@@ -10,9 +10,8 @@ const initialState = {
 }
 
 Object.keys(localStorage).forEach(key => initialState.items.push(JSON.parse(localStorage[key])))
-initialState.cart_1 = initialState.items[0]
-initialState.cart_2 = initialState.items[1]
-
+initialState.cart_1 = initialState.items[0] !== undefined ? initialState.items[0].id : undefined
+initialState.cart_2 = initialState.items[1] !== undefined ? initialState.items[1].id : undefined
 
 const changeSlice = createSlice({
     name: 'product_action',
@@ -20,18 +19,18 @@ const changeSlice = createSlice({
     reducers: {
         addItem: (state, action) => {
 
-            const storedUserData = localStorage.getItem("id_" + action.payload)
+            const storedUserData = localStorage.getItem("id_" + action.payload.id)
             if (storedUserData) {
                 const userData = JSON.parse(storedUserData)
-                localStorage.setItem("id_" + action.payload, JSON.stringify({ id: action.payload, quantity: userData.quantity + 1 }));
+                localStorage.setItem("id_" + action.payload.id, JSON.stringify({ id: action.payload.id, quantity: userData.quantity + action.payload.count }));
             }
             else {
-                localStorage.setItem("id_" + action.payload, JSON.stringify({ id: action.payload, quantity: 1 }));
+                localStorage.setItem("id_" + action.payload.id, JSON.stringify({ id: action.payload.id, quantity: action.payload.count }));
             }
 
-            if (state.cart_1 !== action.payload) {
+            if (state.cart_1 !== action.payload.id) {
                 state.cart_2 = state.cart_1;
-                state.cart_1 = action.payload
+                state.cart_1 = action.payload.id
             }
 
 
@@ -52,6 +51,7 @@ const changeSlice = createSlice({
                 }
 
             }
+            state.items = state.items.filter(item => item.id !== action.payload)
             localStorage.removeItem("id_" + action.payload);
         },
         deleteItemFromCheckout: (state, action) => {
@@ -59,20 +59,25 @@ const changeSlice = createSlice({
 
             state.items = state.items.filter(item => item.id !== action.payload)
             localStorage.removeItem("id_" + action.payload);
-
+            state.cart_1 = undefined;
+            state.cart_2 = undefined;
         },
         deleteItemAll: (state, action) => {
             state.items = []
             localStorage.clear();
+            state.cart_1 = undefined;
+            state.cart_2 = undefined;
         },
 
         setTotal: (state, action) => {
             state.total = action.payload
         },
+
     }
 });
 
 export const selectItems = state => state.product_action;
 export const selectTotal = state => state.product_action.total;
+
 export const { addItem, deleteItem, deleteItemFromCheckout, deleteItemAll, setTotal } = changeSlice.actions;
 export default changeSlice.reducer; 

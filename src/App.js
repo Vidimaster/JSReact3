@@ -1,7 +1,6 @@
 import s from './styles/App.module.scss';
 import { HomePage } from "./components/HomePage/HomePage";
 import { CartCheckout } from "./components/CartCheckout/CartCheckout";
-import { useSelector } from 'react-redux';
 import { Provider, useDispatch } from 'react-redux';
 import store from './redux/store';
 import { ColumnLinks } from "./components/ColumnLinks/ColumnLinks";
@@ -9,12 +8,10 @@ import { NavBarLinks } from "./components/NavBarLinks/NavBarLinks";
 import { Cart } from "./components/Cart/Cart";
 
 import author_img from './img/Intersect.png'
-
+import { Catalogue } from "./components/Catalogue/Catalogue";
 
 import { useState } from "react";
 import { fetchProducts } from './redux/services/showListThunk';
-
-import { selectItems } from './redux/services/showListThunk'
 
 import {
   BrowserRouter,
@@ -58,14 +55,8 @@ function App() {
 
     },
     {
-      path: "/arr",
-      element: <HomePage />,
-      text: "Товары",
-    },
-    {
-      path: "/txt",
-      element: <HomePage />,
-      text: "Текст",
+      path: "/catalogue",
+      element: <Catalogue prop={state} />,
     },
   ];
 
@@ -82,11 +73,6 @@ function App() {
       'Tops', 'Sweaters/Knits', 'Blazers', 'Denim', 'Leggings/Pants', 'Skirts/Shorts', 'Accessories', 'Bags/Purses', 'Swimwear/Underwear', 'Nightwear', 'Shoes', 'Beauty',
     ]
   }
-
-
-  // const itms = useSelector(selectItems);
-  // console.log(itms);
-
 
   return (
     <>
@@ -110,17 +96,17 @@ function App() {
                   <hr className={s.hr_custom}></hr>
 
                   {listNavBar.links.map((value) => (
-                    <a href="#" className={s.mega_link} key={crypto.randomUUID()}>{value}</a>
+                    <a href="/catalogue" className={s.mega_link} key={crypto.randomUUID()}>{value}</a>
                   ))}
                   <br></br>
                   <p className={s.text_menu_subhader}>MEN</p>
                   <hr className={s.hr_custom}></hr>
-                  <a href="#" className={s.mega_link}>Tees/Tank tops</a>
-                  <a href="#" className={s.mega_link}>Shirts/Polos</a>
-                  <a href="#" className={s.mega_link}>Sweaters</a>
-                  <a href="#" className={s.mega_link}>Sweatshirts/Hoodies</a>
-                  <a href="#" className={s.mega_link}>Blazers</a>
-                  <a href="#" className={s.mega_link}>Jackets/vests</a>
+                  <a href="/catalogue" className={s.mega_link}>Tees/Tank tops</a>
+                  <a href="/catalogue" className={s.mega_link}>Shirts/Polos</a>
+                  <a href="/catalogue" className={s.mega_link}>Sweaters</a>
+                  <a href="/catalogue" className={s.mega_link}>Sweatshirts/Hoodies</a>
+                  <a href="/catalogue" className={s.mega_link}>Blazers</a>
+                  <a href="/catalogue" className={s.mega_link}>Jackets/vests</a>
 
                 </div>
               </div>
@@ -148,10 +134,6 @@ function App() {
 
       </div>
       <BrowserRouter>
-        <nav >
-
-          {/* {routes.map(item => <NavLink key={item.path} to={item.path}>{item.text}</NavLink>)} */}
-        </nav>
 
         <div>
 
